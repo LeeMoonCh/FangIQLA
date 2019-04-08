@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>BG05大数据管理平台 - 主页</title>
+
+    <meta name="keywords" content="恩">
+    <meta name="description" content="不错">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <!--用于jar启动-->
+    <link rel="shortcut icon" href="favicon.ico"> <link href="/html/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/html/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="/html/css/animate.css" rel="stylesheet">
+    <link href="/html/css/style.css?v=4.1.0" rel="stylesheet">
+    <link rel="shortcut icon" href="/images/mc.png">
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            src: url('//http://at.alicdn.com/t/font_1469410270_4028482.eot'); /* IE9*/
+            src: url('//http://at.alicdn.com/t/font_1469410270_4028482.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('//http://at.alicdn.com/t/font_1469410270_4028482.woff') format('woff'), /* chrome、firefox */
+            url('//http://at.alicdn.com/t/font_1469410270_4028482.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('//http://at.alicdn.com/t/font_1469410270_4028482.svg#iconfont') format('svg'); /* iOS 4.1- */			}
+        .iconfont{
+            font-family:"iconfont";
+            font-size:16px;
+            font-style:normal;
+        }
+        .icon-tel:before{
+            content: "\e601";
+        }
+    </style>
+
+    <!--用于编写查看效果-->
+    <!--<link rel="shortcut icon" href="favicon.ico"> <link href="../static/html/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">-->
+    <!--<link href="../static/html/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">-->
+    <!--<link href="../static/html/css/animate.css" rel="stylesheet">-->
+    <!--<link href="../static/html/css/style.css?v=4.1.0" rel="stylesheet">-->
+</head>
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<!--nav主要用于编辑链接容器,其中role属性用来定义它为一个导航容器-->
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div id="wrapper">
+    <!--i标签用于显示字体倾斜-->
+    <div class="nav-close"><i class="fa fa-times-circle"></i>
+    </div>
+    <ul class="nav" id="side-menu">
+        <!--用来设置nav标签栏的上部信息,可以对应数据库中的user_info-->
+        <li class="nav-header">
+            <div div class="dropdown profile-element">
+                <!--nav头部中的一个div标签,用于编写东西-->
+                <!--这里需要注意,可以在user_info中获取到该用户的头像.并且需要编写一个用户上次头像后转成64*64格式大小的工具类-->
+                <span><img src="/html/img/profile_small.jpg" alt="img" class="img-circle"></span>
+                <!--a指定超链接,主要是它对应的下拉菜单的超链接-->
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    <!--用户姓名,可以从user_info表中获取到.-->
+                               <span class="block m-t-xs"><strong class="font-bold">Beaut-zihan</strong></span>
+                                    <!--b标签引用了样式,下拉箭头-->
+                                <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+                                </span>
+                </a>
+                <!--用来相应a的下拉菜单-->
+                <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                    <!--这里可以使用th:each-->
+                    <!--这里的页面需要时间来完善-->
+                    <li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
+                    </li>
+                    <li><a class="J_menuItem" href="profile.html">个人资料</a>
+                    </li>
+                    <li><a class="J_menuItem" href="contacts.html">联系我们</a>
+                    </li>
+                    <li><a class="J_menuItem" href="mailbox.html">信箱</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="/page/login">安全退出</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="logo-element">BG05
+            </div>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-home">  查询分析</i>
+                <!--nav的labe样式,比如会有选框啥的.-->
+                <span class="nav label"></span>
+                <span class="fa arrow"></span>
+            </a>
+            <!--对应的下拉菜单 nav的二级菜单-->
+            <ul class="nav nav-second-level">
+                <li><a class="J_menuItem" href="/query/qhbase">Hbase表单查询</a></li>
+                <li><a href="/query/qmysql" class="J_menuItem">Mysql表单查询</a></li>
+                <li><a href="/query/aspark" class="J_menuItem">spark数据分析</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-amazon"> OA系统</i>
+                <span class="nav label"></span>
+                <span class="fa arrow"></span>
+            </a>
+            <ul class="nav nav-second-level">
+                <li><a href="/oa/owner" class="J_menuItem">个人主页</a></li>
+                <li><a href="/oa/fabu" class="J_menuItem">发布任务</a></li>
+                <li><a href="/oa/daiban" class="J_menuItem">待办</a></li>
+                <li><a href="/oa/history" class="J_menuItem">历史</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-android"> 技术文章发布</i>
+                <span class="nav label"></span>
+                <span class="fa arrow"></span>
+            </a>
+            <ul class="nav nav-second-level">
+                <li><a href="/blob/f_owner" class="J_menuItem">博文主页</a></li>
+                <li><a href="/blob/f_bw" class="J_menuItem">写博文</a></li>
+                <li><a href="/blob/f_list" class="J_menuItem">博文列表</a></li>
+            </ul>
+
+        </li>
+    </ul>
+    </div>
+</nav>
+<!--左边的选项栏结束了-->
+
+
+<!--页面右半部分开始-->
+<div id="page-wrapper" class="gray-bg dashbard-1">
+    <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <!--设定该nvabar头部样式-->
+            <div class="navbar-header">
+                <!--这个超链接用来关闭左选项栏-->
+                <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <!--这部分用来生产查询表单页面,用来全文索引,之后会补全改代码-->
+                <form role="search" class="navbar-form-custom" method="post" action="">
+                    <div class="form-group">
+                        <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search" id="top-search">
+                    </div>
+                </form>
+            </div>
+        </nav>
+    </div>
+    <!--右边下边栏-->
+    <div class="row content-tabs">
+        <!--按钮1 左按钮,用于相应左走-->
+        <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i>
+        </button>
+        <nav class="page-tabs J_menuTabs">
+            <div class="page-tabs-content">
+                <a href="javascript:;" class="active J_menuTab" data-id="zy">主页</a>
+            </div>
+        </nav>
+        <!--按钮2 右按钮用于相应右走-->
+        <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
+        </button>
+        <div class="btn-group roll-nav roll-right">
+            <button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span>
+
+            </button>
+            <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                <li class="J_tabShowActive"><a>定位当前选项卡</a>
+                </li>
+                <li class="divider"></li>
+                <li class="J_tabCloseAll"><a>关闭全部选项卡</a>
+                </li>
+                <li class="J_tabCloseOther"><a>关闭其他选项卡</a>
+                </li>
+            </ul>
+        </div>
+        <a href="/page/login" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+    </div>
+
+    <!--开始相应每个新tab的页面,主要用来容纳页面内容-->
+
+    <div class="row J_mainContent" id="content-main">
+        <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="/zy" data-id="zy" seamless></iframe>
+    </div>
+    <!--用来声明网站内容-->
+    <div class="footer">
+        <div class="pull-right">&copy; 2019-2020 <a href="localhost:8080/page/login" target="_blank">BG05大数据管理中心</a>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+    <!--用于jar包运行-->
+    <!-- 全局js -->
+    <script src="/html/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/html/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="/html/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/html/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/html/js/plugins/layer/layer.min.js"></script>
+
+    <!-- 自定义js -->
+    <script src="/html/js/hplus.js?v=4.1.0"></script>
+    <script type="text/javascript" src="/html/js/contabs.js"></script>
+
+    <!-- 第三方插件 -->
+    <script src="/html/js/plugins/pace/pace.min.js"></script>
+
+
+
+
+    <!--&lt;!&ndash;用于编写查看效果&ndash;&gt;-->
+    <!--&lt;!&ndash; 全局js &ndash;&gt;-->
+    <!--<script src="../static/html/js/jquery.min.js?v=2.1.4"></script>-->
+    <!--<script src="../static/html/js/bootstrap.min.js?v=3.3.6"></script>-->
+    <!--<script src="../static/html/js/plugins/metisMenu/jquery.metisMenu.js"></script>-->
+    <!--<script src="../static/html/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>-->
+    <!--<script src="../static/html/js/plugins/layer/layer.min.js"></script>-->
+
+    <!--&lt;!&ndash; 自定义js &ndash;&gt;-->
+    <!--<script src="../static/html/js/hplus.js?v=4.1.0"></script>-->
+    <!--<script type="text/javascript" src="../static/html/js/contabs.js"></script>-->
+
+    <!--&lt;!&ndash; 第三方插件 &ndash;&gt;-->
+    <!--<script src="../static/html/js/plugins/pace/pace.min.js"></script>-->
+
+
+
+</body>
+</html>
